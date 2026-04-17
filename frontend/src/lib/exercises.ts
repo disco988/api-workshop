@@ -6,8 +6,8 @@ export const EXERCISES: Exercise[] = [
     number: 1,
     title: 'Pobierz listę produktów z kategorii elektronika',
     description:
-      'Użyj metody GET żeby pobrać produkty. Przefiltruj wyniki dodając parametr `category=elektronika` do URL.',
-    hint: 'URL powinien wyglądać tak: /api/produkty?category=elektronika',
+      'Użyj metody GET żeby pobrać produkty. Przefiltruj wyniki dodając parametr do URL.',
+    hint: 'Parametry w URL zaczynamy od znaku zapytania',
     method: 'GET',
     expectedStatus: 200,
     validate(result: RequestResult) {
@@ -24,8 +24,8 @@ export const EXERCISES: Exercise[] = [
     number: 2,
     title: 'Pobierz szczegóły Słuchawek',
     description:
-      'Pobierz jeden konkretny produkt po jego ID. ID Słuchawek to `p_9x2k` — wstaw je bezpośrednio do URL zamiast `{id}`.',
-    hint: 'URL: /api/produkty/p_9x2k',
+      'Pobierz jeden konkretny produkt po jego ID',
+    hint: 'sprawdz ID w dokumentacji',
     method: 'GET',
     expectedStatus: 200,
     validate(result: RequestResult) {
@@ -64,7 +64,7 @@ export const EXERCISES: Exercise[] = [
     number: 4,
     title: 'Zaktualizuj cenę Słuchawek',
     description:
-      'Użyj metody PUT żeby zmienić cenę Słuchawek (ID: `p_9x2k`) na 179.99. PUT wymaga podania WSZYSTKICH pól w body — nie tylko tych które zmieniasz.',
+      'Użyj metody PUT żeby zmienić cenę Słuchawek na 179.99. PUT wymaga podania WSZYSTKICH pól w body — nie tylko tych które zmieniasz.',
     hint: 'Wszystkie pola: name, price, category, stock. ID Słuchawek wstaw w URL.',
     method: 'PUT',
     expectedStatus: 200,
