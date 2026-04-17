@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { box-sizing: border-box; }
+  body {
+    @apply bg-slate-50 text-slate-800 antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  .method-get    { @apply bg-blue-100 text-blue-800 border border-blue-200; }
+  .method-post   { @apply bg-green-100 text-green-800 border border-green-200; }
+  .method-put    { @apply bg-amber-100 text-amber-800 border border-amber-200; }
+  .method-delete { @apply bg-red-100 text-red-800 border border-red-200; }
+
+  .code-block {
+    @apply bg-slate-900 text-slate-100 rounded-lg p-4 font-mono text-sm leading-relaxed overflow-x-auto;
+  }
+
+  .tab-active   { @apply border-b-2 border-blue-600 text-blue-600 font-medium; }
+  .tab-inactive { @apply text-slate-500 hover:text-slate-700; }
+}
