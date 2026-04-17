@@ -31,7 +31,7 @@ const QUICK_PRESETS: { label: string; method: HttpMethod; url: string; body?: st
 
 export function PlaygroundPage() {
   const [selected, setSelected] = useState(QUICK_PRESETS[0])
-  const [key, setKey] = useState(0) // forces RequestBuilder remount on preset change
+  const [key, setKey] = useState(0)
 
   const applyPreset = (preset: typeof selected) => {
     setSelected(preset)
@@ -41,34 +41,34 @@ export function PlaygroundPage() {
   return (
     <div className="max-w-4xl mx-auto space-y-6 py-6">
       <div>
-        <h1 className="text-2xl font-bold text-slate-800">Plac zabaw</h1>
-        <p className="text-slate-500 mt-1">Eksperymentuj swobodnie — wysyłaj dowolne requesty do API</p>
+        <h1 className="text-xl font-semibold text-slate-100">Plac zabaw</h1>
+        <p className="text-slate-500 mt-1 text-sm">Eksperymentuj swobodnie — wysyłaj dowolne requesty do API</p>
       </div>
 
       <div className="grid md:grid-cols-[220px_1fr] gap-5">
         {/* Presets sidebar */}
-        <div className="space-y-2">
-          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">Gotowe przykłady</p>
+        <div className="space-y-1">
+          <p className="text-xs font-semibold text-slate-600 uppercase tracking-wider mb-3">Gotowe przykłady</p>
           {QUICK_PRESETS.map(p => (
             <button
               key={p.label}
               onClick={() => applyPreset(p)}
-              className={`w-full text-left px-3 py-2.5 rounded-lg text-sm transition-colors flex items-center gap-2 ${selected.label === p.label ? 'bg-blue-50 border border-blue-200 text-blue-800' : 'hover:bg-slate-100 text-slate-700 border border-transparent'}`}
+              className={`w-full text-left px-3 py-2.5 rounded-lg text-sm transition-colors flex items-center gap-2 ${selected.label === p.label ? 'bg-blue-500/10 border border-blue-500/25 text-blue-300' : 'hover:bg-slate-800 text-slate-400 border border-transparent'}`}
             >
               <MethodBadge method={p.method} size="sm" />
               <span className="truncate text-xs">{p.label}</span>
             </button>
           ))}
 
-          <div className="pt-3 border-t border-slate-200">
-            <p className="text-xs text-slate-400 leading-relaxed">
+          <div className="pt-3 border-t border-slate-800">
+            <p className="text-xs text-slate-600 leading-relaxed">
               Możesz też wpisać własny URL i body — API zwróci prawdziwą odpowiedź.
             </p>
           </div>
         </div>
 
         {/* Request builder */}
-        <div className="bg-white rounded-xl border border-slate-200 p-5">
+        <div className="bg-slate-900 rounded-xl border border-slate-800 p-5">
           <RequestBuilder
             key={key}
             defaultMethod={selected.method}

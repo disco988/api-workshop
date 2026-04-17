@@ -1,10 +1,10 @@
 import type { HttpMethod } from '../types'
 
 const STYLES: Record<HttpMethod, string> = {
-  GET:    'bg-blue-100 text-blue-800 border border-blue-200',
-  POST:   'bg-green-100 text-green-800 border border-green-200',
-  PUT:    'bg-amber-100 text-amber-800 border border-amber-200',
-  DELETE: 'bg-red-100 text-red-800 border border-red-200',
+  GET:    'bg-blue-500/10 text-blue-400 border border-blue-500/25',
+  POST:   'bg-emerald-500/10 text-emerald-400 border border-emerald-500/25',
+  PUT:    'bg-amber-500/10 text-amber-400 border border-amber-500/25',
+  DELETE: 'bg-red-500/10 text-red-400 border border-red-500/25',
 }
 
 export function MethodBadge({ method, size = 'md' }: { method: HttpMethod; size?: 'sm' | 'md' }) {

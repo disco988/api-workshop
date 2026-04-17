@@ -145,13 +145,13 @@ Content-Type: application/json
 ]
 
 const TYPE_STYLE: Record<string, string> = {
-  string: 'text-amber-600 bg-amber-50 border-amber-200',
-  number: 'text-purple-600 bg-purple-50 border-purple-200',
+  string: 'text-amber-400 bg-amber-500/10 border-amber-500/25',
+  number: 'text-purple-400 bg-purple-500/10 border-purple-500/25',
 }
 
 function TypeBadge({ type }: { type: string }) {
   return (
-    <span className={`text-xs font-mono px-1.5 py-0.5 rounded border ${TYPE_STYLE[type] || 'text-slate-600 bg-slate-50 border-slate-200'}`}>
+    <span className={`text-xs font-mono px-1.5 py-0.5 rounded border ${TYPE_STYLE[type] || 'text-slate-400 bg-slate-800 border-slate-700'}`}>
       {type}
     </span>
   )
@@ -160,30 +160,30 @@ function TypeBadge({ type }: { type: string }) {
 function EndpointCard({ ep }: { ep: EndpointDoc }) {
   const [open, setOpen] = useState(false)
   return (
-    <div className="border border-slate-200 rounded-xl overflow-hidden bg-white">
+    <div className="border border-slate-800 rounded-xl overflow-hidden bg-slate-900">
       <button
         onClick={() => setOpen(o => !o)}
-        className="w-full flex items-center gap-3 p-4 text-left hover:bg-slate-50 transition-colors"
+        className="w-full flex items-center gap-3 p-4 text-left hover:bg-slate-800/50 transition-colors"
       >
         <MethodBadge method={ep.method} />
-        <code className="text-sm font-mono text-slate-700 flex-1">{ep.path}</code>
+        <code className="text-sm font-mono text-slate-300 flex-1">{ep.path}</code>
         <span className="text-sm text-slate-500 hidden sm:block">{ep.summary}</span>
-        <svg className={`w-4 h-4 text-slate-400 transition-transform ${open ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <svg className={`w-4 h-4 text-slate-600 transition-transform ${open ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
         </svg>
       </button>
 
       {open && (
-        <div className="border-t border-slate-200 p-5 space-y-5 bg-slate-50">
-          <p className="text-sm text-slate-600 leading-relaxed">{ep.description}</p>
+        <div className="border-t border-slate-800 p-5 space-y-5 bg-slate-950/40">
+          <p className="text-sm text-slate-400 leading-relaxed">{ep.description}</p>
 
           {ep.params && ep.params.length > 0 && (
             <div>
               <h4 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Parametry</h4>
-              <div className="overflow-x-auto rounded-lg border border-slate-200">
-                <table className="w-full text-sm bg-white">
+              <div className="overflow-x-auto rounded-lg border border-slate-800">
+                <table className="w-full text-sm bg-slate-900">
                   <thead>
-                    <tr className="bg-slate-100 text-xs text-slate-500 uppercase tracking-wider">
+                    <tr className="bg-slate-800 text-xs text-slate-500 uppercase tracking-wider">
                       <th className="text-left px-3 py-2">Nazwa</th>
                       <th className="text-left px-3 py-2">Typ</th>
                       <th className="text-left px-3 py-2">Gdzie</th>
@@ -193,12 +193,12 @@ function EndpointCard({ ep }: { ep: EndpointDoc }) {
                   </thead>
                   <tbody>
                     {ep.params.map(p => (
-                      <tr key={p.name} className="border-t border-slate-100">
-                        <td className="px-3 py-2 font-mono text-sky-700">{p.name}</td>
+                      <tr key={p.name} className="border-t border-slate-800">
+                        <td className="px-3 py-2 font-mono text-sky-400">{p.name}</td>
                         <td className="px-3 py-2"><TypeBadge type={p.type} /></td>
-                        <td className="px-3 py-2 text-slate-500 text-xs">{p.where === 'path' ? '🔗 URL' : '❓ query'}</td>
-                        <td className="px-3 py-2">{p.required ? <span className="text-red-500 text-xs font-medium">tak ●</span> : <span className="text-slate-400 text-xs">nie</span>}</td>
-                        <td className="px-3 py-2 text-slate-600">{p.desc}</td>
+                        <td className="px-3 py-2 text-slate-500 text-xs font-mono">{p.where}</td>
+                        <td className="px-3 py-2">{p.required ? <span className="text-red-400 text-xs font-medium">tak</span> : <span className="text-slate-600 text-xs">nie</span>}</td>
+                        <td className="px-3 py-2 text-slate-400">{p.desc}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -210,10 +210,10 @@ function EndpointCard({ ep }: { ep: EndpointDoc }) {
           {ep.bodyFields && ep.bodyFields.length > 0 && (
             <div>
               <h4 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Pola body (JSON)</h4>
-              <div className="overflow-x-auto rounded-lg border border-slate-200">
-                <table className="w-full text-sm bg-white">
+              <div className="overflow-x-auto rounded-lg border border-slate-800">
+                <table className="w-full text-sm bg-slate-900">
                   <thead>
-                    <tr className="bg-slate-100 text-xs text-slate-500 uppercase tracking-wider">
+                    <tr className="bg-slate-800 text-xs text-slate-500 uppercase tracking-wider">
                       <th className="text-left px-3 py-2">Pole</th>
                       <th className="text-left px-3 py-2">Typ</th>
                       <th className="text-left px-3 py-2">Wymagane</th>
@@ -223,12 +223,12 @@ function EndpointCard({ ep }: { ep: EndpointDoc }) {
                   </thead>
                   <tbody>
                     {ep.bodyFields.map(f => (
-                      <tr key={f.name} className="border-t border-slate-100">
-                        <td className="px-3 py-2 font-mono text-sky-700">{f.name}</td>
+                      <tr key={f.name} className="border-t border-slate-800">
+                        <td className="px-3 py-2 font-mono text-sky-400">{f.name}</td>
                         <td className="px-3 py-2"><TypeBadge type={f.type} /></td>
-                        <td className="px-3 py-2">{f.required ? <span className="text-red-500 text-xs font-medium">tak ●</span> : <span className="text-slate-400 text-xs">nie</span>}</td>
-                        <td className="px-3 py-2 font-mono text-xs text-slate-600 bg-slate-50">{f.example}</td>
-                        <td className="px-3 py-2 text-slate-600">{f.desc}</td>
+                        <td className="px-3 py-2">{f.required ? <span className="text-red-400 text-xs font-medium">tak</span> : <span className="text-slate-600 text-xs">nie</span>}</td>
+                        <td className="px-3 py-2 font-mono text-xs text-slate-400 bg-slate-800/50">{f.example}</td>
+                        <td className="px-3 py-2 text-slate-400">{f.desc}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -252,9 +252,9 @@ function EndpointCard({ ep }: { ep: EndpointDoc }) {
             <h4 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Kody odpowiedzi</h4>
             <div className="flex flex-wrap gap-2">
               {ep.responseCodes.map(r => (
-                <div key={r.code} className={`flex items-center gap-2 text-xs px-3 py-1.5 rounded-lg border ${r.code < 300 ? 'bg-green-50 border-green-200 text-green-800' : r.code < 500 ? 'bg-amber-50 border-amber-200 text-amber-800' : 'bg-red-50 border-red-200 text-red-800'}`}>
+                <div key={r.code} className={`flex items-center gap-2 text-xs px-3 py-1.5 rounded-lg border ${r.code < 300 ? 'bg-emerald-500/10 border-emerald-500/25 text-emerald-400' : r.code < 500 ? 'bg-amber-500/10 border-amber-500/25 text-amber-400' : 'bg-red-500/10 border-red-500/25 text-red-400'}`}>
                   <span className="font-mono font-bold">{r.code}</span>
-                  <span>{r.desc}</span>
+                  <span className="text-slate-400">{r.desc}</span>
                 </div>
               ))}
             </div>
@@ -270,40 +270,42 @@ export function DocsPage() {
     <div className="max-w-4xl mx-auto space-y-8 py-6">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold text-slate-800">Dokumentacja API</h1>
-        <p className="text-slate-500 mt-1">Fikcyjne API sklepu internetowego — do nauki REST API</p>
+        <h1 className="text-xl font-semibold text-slate-100">Dokumentacja API</h1>
+        <p className="text-slate-500 mt-1 text-sm">Fikcyjne API sklepu internetowego — do nauki REST API</p>
         <div className="mt-3 flex flex-wrap gap-3 text-sm">
-          <span className="px-3 py-1 bg-slate-100 rounded-lg text-slate-600 font-mono">Base URL: /api</span>
-          <span className="px-3 py-1 bg-slate-100 rounded-lg text-slate-600">Format: JSON</span>
+          <span className="px-3 py-1 bg-slate-800 border border-slate-700 rounded-lg text-slate-400 font-mono">Base URL: /api</span>
+          <span className="px-3 py-1 bg-slate-800 border border-slate-700 rounded-lg text-slate-400">Format: JSON</span>
         </div>
       </div>
 
       {/* Concepts */}
       <div className="grid sm:grid-cols-2 gap-4">
         {[
-          { icon: '🔤', title: 'string — tekst', desc: 'Zawsze w cudzysłowach', ex: '"elektronika"', color: 'amber' },
-          { icon: '🔢', title: 'number — liczba', desc: 'Bez cudzysłowów', ex: '199.99', color: 'purple' },
+          { title: 'string — tekst', desc: 'Zawsze w cudzysłowach', ex: '"elektronika"', accent: 'amber' },
+          { title: 'number — liczba', desc: 'Bez cudzysłowów', ex: '199.99', accent: 'purple' },
         ].map(c => (
-          <div key={c.title} className="p-4 rounded-xl border border-slate-200 bg-white flex gap-3 items-start">
-            <span className="text-2xl">{c.icon}</span>
+          <div key={c.title} className={`p-4 rounded-xl border bg-slate-900 flex gap-3 items-start ${c.accent === 'amber' ? 'border-amber-500/20' : 'border-purple-500/20'}`}>
+            <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 text-xs font-mono font-bold ${c.accent === 'amber' ? 'bg-amber-500/10 text-amber-400' : 'bg-purple-500/10 text-purple-400'}`}>
+              {c.accent === 'amber' ? 'str' : '123'}
+            </div>
             <div>
-              <p className="font-semibold text-slate-700 text-sm">{c.title}</p>
+              <p className="font-semibold text-slate-200 text-sm">{c.title}</p>
               <p className="text-xs text-slate-500 mt-0.5">{c.desc}</p>
-              <code className="mt-1 block text-xs bg-slate-900 text-slate-100 px-2 py-1 rounded">{c.ex}</code>
+              <code className="mt-1.5 block text-xs bg-slate-950 text-slate-300 px-2 py-1 rounded border border-slate-800">{c.ex}</code>
             </div>
           </div>
         ))}
       </div>
 
       {/* Dostępne dane */}
-      <div className="p-5 rounded-xl border border-slate-200 bg-white">
-        <h2 className="text-sm font-semibold text-slate-700 mb-3">📦 Dostępne dane w API</h2>
+      <div className="p-5 rounded-xl border border-slate-800 bg-slate-900">
+        <h2 className="text-sm font-semibold text-slate-300 mb-3">Dostępne dane w API</h2>
         <div className="grid sm:grid-cols-2 gap-4 text-sm">
           <div>
             <p className="text-xs font-medium text-slate-500 uppercase tracking-wide mb-2">Kategorie</p>
             <div className="flex flex-wrap gap-1.5">
               {['elektronika', 'kuchnia', 'sport', 'ksiazki'].map(c => (
-                <code key={c} className="bg-slate-900 text-slate-100 px-2 py-0.5 rounded text-xs">{c}</code>
+                <code key={c} className="bg-slate-950 border border-slate-800 text-slate-300 px-2 py-0.5 rounded text-xs">{c}</code>
               ))}
             </div>
           </div>
@@ -317,7 +319,7 @@ export function DocsPage() {
                 ['p_7z9w', 'Bidon, 49.00, sport'],
               ].map(([id, desc]) => (
                 <div key={id} className="flex items-center gap-2">
-                  <code className="bg-slate-900 text-sky-300 px-2 py-0.5 rounded text-xs">{id}</code>
+                  <code className="bg-slate-950 border border-slate-800 text-sky-400 px-2 py-0.5 rounded text-xs">{id}</code>
                   <span className="text-xs text-slate-500">{desc}</span>
                 </div>
               ))}
@@ -328,7 +330,7 @@ export function DocsPage() {
 
       {/* Endpoints */}
       <div>
-        <h2 className="text-sm font-semibold text-slate-700 mb-3 uppercase tracking-wider">Endpointy — kliknij żeby rozwinąć</h2>
+        <h2 className="text-xs font-semibold text-slate-500 mb-3 uppercase tracking-wider">Endpointy — kliknij żeby rozwinąć</h2>
         <div className="space-y-2">
           {ENDPOINTS.map(ep => <EndpointCard key={ep.method + ep.path} ep={ep} />)}
         </div>
