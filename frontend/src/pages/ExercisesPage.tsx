@@ -43,9 +43,9 @@ function ExerciseCard({ ex, index, completed, attempts }: ExerciseCardProps) {
 
   const getDefaultUrl = () => {
     if (ex.id === 'ex1') return '/api/produkty'
-    if (ex.id === 'ex2') return '/api/produkty/'
+    if (ex.id === 'ex2') return '/api/produkty/p_9x2k'
     if (ex.id === 'ex3') return '/api/produkty'
-    if (ex.id === 'ex4') return '/api/produkty/'
+    if (ex.id === 'ex4') return '/api/produkty/p_9x2k'
     return '/api/produkty'
   }
 
